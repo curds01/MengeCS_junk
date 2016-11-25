@@ -28,4 +28,17 @@ namespace MengeCS {
 		return nullptr;
 	}
 
+	// ---------------------------------------------------
+
+	void Simulator::SetTimeStep( float timestep ) {
+		assert( _simulator != 0x0 );
+		_simulator->setTimeStep( timestep );
+	}
+
+	// ---------------------------------------------------
+
+	void Simulator::DoStep() {
+		assert( _simulator != 0x0 );
+		_simulator->doStep();
+	}
 }	// namespace MengeCS
