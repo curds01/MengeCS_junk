@@ -1,0 +1,8 @@
+build/
+Debug/
+ipch/
+MengeCS.opensdf
+MengeCS.sdf
+MengeCS.v12.suo
+MengeCSExe/bin
+MengeCSExe/obj
