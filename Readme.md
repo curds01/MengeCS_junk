@@ -20,3 +20,8 @@ It turns out this isn't compatible with Unity.
 Still to do:
    - Provide interface for saving out trajectories into an scb file.
    - ... This is put on hold in the light of the recent discoveries ...
+   
+New plan
+   - Write another dll called ``CMenge``.
+      - it is a simple C-style interface to the Menge API.
+   - Write C# assembly (in 3.5) which uses DllImport to bring the methods into the assembly and then wrap them with C# constructs.
