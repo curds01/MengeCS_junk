@@ -6,14 +6,17 @@ projects to provide access to the Menge simulation core.
 
 In this version:
 
-   - No real functionality; only the skeleton of the dll is in place.
+   - Three full classes:
+      - ``Vector2`` - a simple wrapper of the `Menge::Math::Vector2` class for reporting agent properties.
+      - ``Agent`` - a simple wrapper of the `Menge::Agents::BaseAgent` class.  Reports agent position, orientation, velocity, and preferred velocity.
+      - ``Simulator`` - a wrapper for the Menge simulation system.  Allows initialization on scene, behavior, and model specifications.  Allows for setting the time step and advancing the state of the simulation.  Also grants access to the wrapped agents to query the agent state.
+   - Includes a C# executable that tests the functionality; loads `cross.xml` and runs 20 simulation steps, printing the output.
+   
+It turns out this isn't compatible with Unity.
+   - Unity runs an old version of .NET (well, quasi-.NET) akin to .NET 2.0.  This builds a dll that has .NET 4 dependencies.
+   - This means the dll *can* be used by the Mono editor shipped with Unity but *not* by Unity itself.
+   - The best hope for addressing this is building this dll in VS2008 (which *should* produce a compatible dll.)  However, this is not feasible either; it would require the Menge dlls to be built in 2008 as well.  And this isn't currently supported.
 
 Still to do:
-   - Extend `Simulator` interface to include advancing simulation time step
-     and setting time step size.
-   - Implement interface to `Simulator` so that it can be initialized by
-     specifying behavior and scene specification files.
    - Provide interface for saving out trajectories into an scb file.
-   - More testing of the above functionality.
-   - Add Unity project showing Menge simulation moving Unity elements.
-
+   - ... This is put on hold in the light of the recent discoveries ...
