@@ -16,8 +16,8 @@ namespace MengeCSExe
             if (sim.Initialize(behaveXml, sceneXml, "orca"))
             {
                 System.Console.WriteLine("New simulator created.");
-                System.Console.WriteLine("\t{0} agents", sim.GetAgentCount());
-                for (uint i = 0; i < sim.GetAgentCount(); ++i)
+                System.Console.WriteLine("\t{0} agents", sim.AgentCount);
+                for (int i = 0; i < sim.AgentCount; ++i)
                 {
                     System.Console.WriteLine(sim.GetAgent(i).ToString());
                 }
@@ -29,11 +29,11 @@ namespace MengeCSExe
                         System.Console.WriteLine("Simulation done...quitting");
                         break;
                     }
-                    for (uint a = 0; a < sim.GetAgentCount(); ++a)
+                    for (int a = 0; a < sim.AgentCount; ++a)
                     {
                         Agent agt = sim.GetAgent(a);
-                        Vector2 p = agt.GetPosition();
-                        System.Console.WriteLine("\tAgent {0} at ({1}, {2})", a, p.X(), p.Y());
+                        Vector2 p = agt.Position;
+                        System.Console.WriteLine("\tAgent {0} at ({1}, {2})", a, p.X, p.Y);
                     }
                 }
 
