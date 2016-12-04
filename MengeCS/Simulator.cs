@@ -29,7 +29,7 @@ namespace MengeCS
                 float c = (float)Math.Cos(theta);
                 float s = (float)Math.Sin(theta);
                 Agent agt = new Agent();
-                agt._pos = new Vector2(c * RADIUS, s * RADIUS);
+                agt._pos = new Vector3(c * RADIUS, 0 /*elevation*/, s * RADIUS);
                 _agents.Add(agt);
             }
             return true;
@@ -63,11 +63,11 @@ namespace MengeCS
             const float THETA = (float)Math.PI / 100;
             float c = (float)Math.Cos(THETA);
             float s = (float)Math.Sin(THETA);
-            Vector2 newPos = new Vector2();
+            Vector3 newPos = new Vector3();
             foreach (Agent agt in _agents)
             {
-                newPos.X = agt.Position.X * c + agt.Position.Y * s;
-                newPos.Y = -agt.Position.X * s + agt.Position.Y * c;
+                newPos.X = agt.Position.X * c + agt.Position.Z * s;
+                newPos.Z = -agt.Position.X * s + agt.Position.Z * c;
                 agt._pos.Set(newPos);
             }
             return true;

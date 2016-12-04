@@ -32,8 +32,8 @@ namespace MengeCSExe
                     for (int a = 0; a < sim.AgentCount; ++a)
                     {
                         Agent agt = sim.GetAgent(a);
-                        Vector2 p = agt.Position;
-                        System.Console.WriteLine("\tAgent {0} at ({1}, {2})", a, p.X, p.Y);
+                        Vector3 p = agt.Position;
+                        System.Console.WriteLine("\tAgent {0} at ({1}, {2})", a, p.X, p.Z);
                     }
                 }
 
