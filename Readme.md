@@ -17,3 +17,8 @@ Still to do:
    - More testing of the above functionality.
    - Add Unity project showing Menge simulation moving Unity elements.
 
+Unity Issues
+------------
+	- Although the intent of this was to create a dll that could be exercised
+	by Unity to execerise Menge functionality, my homework was *not* sufficient.
+	Unity currently only supports .NET 2 functionality.

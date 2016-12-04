@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MengeCS\MengeCS.vcxproj">
+    <ProjectReference Include="..\MengeCS_bad\MengeCS_bad.vcxproj">
       <Project>{78e05b80-9318-44ca-9156-9d94fe695542}</Project>
       <Name>MengeCS</Name>
     </ProjectReference>
