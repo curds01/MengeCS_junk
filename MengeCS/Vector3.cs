@@ -41,6 +41,19 @@ namespace MengeCS
             _z = v._z;
         }
 
+        /// <summary>
+        /// Sets the values of this vector from copponents.
+        /// </summary>
+        /// <param name="x">The x-value.</param>
+        /// <param name="y">The y-value.</param>
+        /// <param name="z">The z-value.</param>
+        public void Set(float x, float y, float z)
+        {
+            _x = x;
+            _y = y;
+            _z = z;
+        }
+
         public float X
         {
             get { return _x; }

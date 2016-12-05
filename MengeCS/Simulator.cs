@@ -17,22 +17,28 @@ namespace MengeCS
             _agents = new List<Agent>();
         }
 
-        public bool Initialize(String behaviorXml, String sceneXml, String model)
+        public bool Initialize(String behaveXml, String sceneXml, String model)
         {
-            // TODO: Initialize from scene, behavior, and model.
-            const float RADIUS = 5;
-            const int COUNT = 20;
-            const float dTheta = 2.0f * (float)Math.PI / COUNT;
-            for (int i = 0; i < COUNT; ++i)
+            if (MengeWrapper.InitSimulator(behaveXml, sceneXml, model))
             {
-                float theta = dTheta * i;
-                float c = (float)Math.Cos(theta);
-                float s = (float)Math.Sin(theta);
-                Agent agt = new Agent();
-                agt._pos = new Vector3(c * RADIUS, 0 /*elevation*/, s * RADIUS);
-                _agents.Add(agt);
+                uint count = MengeWrapper.AgentCount();
+                for (uint i = 0; i < count; ++i)
+                {
+                    Agent agt = new Agent();
+                    float x = 0;
+                    float y = 0;
+                    float z = 0;
+                    MengeWrapper.GetAgentPosition(i, ref x, ref y, ref z);
+                    agt._pos = new Vector3(x, y, z);
+                    _agents.Add(agt);
+                }
+                    return true;
             }
-            return true;
+            else
+            {
+                System.Console.WriteLine("Failed to initialize simulator.");
+            }
+            return false;
         }
 
         /// <summary>
@@ -52,7 +58,11 @@ namespace MengeCS
         /// <summary>
         /// The simulation time step.
         /// </summary>
-        public float TimeStep { get { return _timeStep;} set { _timeStep = value;}}
+        public float TimeStep
+        {
+            get { return _timeStep; }
+            set { _timeStep = value; MengeWrapper.SetTimeStep(_timeStep); }
+        }
         private float _timeStep = 0.1f;
 
         /// <summary>
@@ -60,15 +70,11 @@ namespace MengeCS
         /// </summary>
         /// <returns>True if evaluation is successful and the simulation can proceed.</returns>
         public bool DoStep() {
-            const float THETA = (float)Math.PI / 100;
-            float c = (float)Math.Cos(THETA);
-            float s = (float)Math.Sin(THETA);
-            Vector3 newPos = new Vector3();
-            foreach (Agent agt in _agents)
-            {
-                newPos.X = agt.Position.X * c + agt.Position.Z * s;
-                newPos.Z = -agt.Position.X * s + agt.Position.Z * c;
-                agt._pos.Set(newPos);
+            bool running = MengeWrapper.DoStep();
+            for (int i = 0; i < _agents.Count; ++i) {
+                float x = 0, y = 0, z = 0;
+                MengeWrapper.GetAgentPosition((uint)i, ref x, ref y, ref z);
+                _agents[i].Position.Set(x, y, z);
             }
             return true;
         }

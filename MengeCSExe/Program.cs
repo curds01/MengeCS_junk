@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MengeCS;
+using System.Runtime.InteropServices;
 
 namespace MengeCSExe
 {
